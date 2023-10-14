@@ -1,7 +1,5 @@
 # Traffic signs detection and classification in real time
 
-### A new version using SSD will be released this summer for anyone need higher accuracy detection method. Stay tuned for new update!
-
 ### 1. Description ###
 This project is a traffic signs detection and classification system on videos using OpenCV.
 The detection phase uses Image Processing techniques that create contours on each video frame and find all ellipses or circles among those contours. They are marked as candidates for traffic signs.
@@ -14,12 +12,6 @@ Detection strategy:
 5. Detect ellipse-like and circle-like contours
 
 In the next phase - classification phase, a list of images are created by cropping from the original frame based on candidates' coordinate. A pre-trained SVM model will classify these images to find out which type of traffic sign they are.
-
-Currently supported traffic signs (*The name of each sign's file is corresponding to their class in SVM*):
- ![](/images/all-signs.png)
-Note:
-- *All signs which belong to class 8 and above are marked as **OTHERS** because a competition requires this. There is also a class 0 which are marked as non-traffic-sign*
-- *Only the **biggest** sign in the current frame is cropped and classified*
 
 The SVM Model is trained each time the ```main.py``` called, before the detection phase but I still save the model in [data_svm.dat](data_svm.dat) to implement the model-reload function in the future to avoid retraining phase.
 
@@ -46,24 +38,7 @@ The [Dataset](dataset) folder contains images for training SVM models. There are
 The dataset is created by applying the detection phase on many videos with various parameters to mark all traffic signs and then manually separating them into their right classes.
 
 Each time run the program, the dataset can be updated by checking all generated cropped images of detected traffic signs, then find all misclassified traffic signs.
-### 4. Installation
-#### There are two ways of running the program:
-Use default arguments:
-```sh
-$python3 main.py
-```
-Use custom arguments: 
-```sh
-$python3 main.py
-optional arguments:
-  -h, --help            show this help message and exit
-  --file_name FILE_NAME
-                        Video to be analyzed
-  --min_size_components MIN_SIZE_COMPONENTS
-                        Min size component to be reserved
-  --similitary_contour_with_circle SIMILITARY_CONTOUR_WITH_CIRCLE
-                        Similarly to a circle
-```
+
 ### 5. Result
 ![](images/demo.gif)
 ### 6. Disadvantages
@@ -77,8 +52,4 @@ optional arguments:
 - Use CNN to classification
 - No need to retrain the model when running the program
 - Make a bigger dataset
-### 8. License
-
-[MIT License](LICENSE)
-© 2018 Hoàng Lê Hải Thanh (Thanh Hoang Le Hai) aka GhostBB
 
